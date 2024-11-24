@@ -1,0 +1,54 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "qpakman-msvc",
+            "generator": "Visual Studio 17 2022",
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        },
+        {
+            "name": "qpakman-linux",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "Debug-MSVC",
+            "configuration": "Debug",
+            "configurePreset": "qpakman-msvc"
+        },
+        {
+            "name": "RelWithDebInfo-MSVC",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "qpakman-msvc"
+        },
+        {
+            "name": "Release-MSVC",
+            "configuration": "Release",
+            "configurePreset": "qpakman-msvc"
+        },
+        {
+            "name": "Debug-Linux",
+            "configuration": "Debug",
+            "configurePreset": "qpakman-linux"
+        },
+        {
+            "name": "RelWithDebInfo-Linux",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "qpakman-linux"
+        },
+        {
+            "name": "Release-Linux",
+            "configuration": "Release",
+            "configurePreset": "qpakman-linux"
+        }
+    ]
+}
