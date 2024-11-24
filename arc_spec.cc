@@ -134,7 +134,7 @@ static int AnalysePOP(int entry, const char *path)
 
 //------------------------------------------------------------------------
 
-static bool StorePalette(FILE *fp, const char *lump)
+static arc_special_result_e StorePalette(FILE *fp, const char *lump)
 {
   printf("  Converting palette back to LMP...\n");
 
@@ -212,7 +212,7 @@ static int ExtractPalette(int entry, const char *path)
 
 //------------------------------------------------------------------------
 
-static bool StoreFontsize(FILE *fp, const char *lump)
+static arc_special_result_e StoreFontsize(FILE *fp, const char *lump)
 {
   printf("  Converting fontsize back to LMP...\n");
 
@@ -244,7 +244,7 @@ static bool StoreFontsize(FILE *fp, const char *lump)
   return ARCSP_Success;
 }
 
-static bool ExtractFontsize(int entry, const char *path)
+static arc_special_result_e ExtractFontsize(int entry, const char *path)
 {
   printf("  Converting fontsize to TXT...\n");
 
