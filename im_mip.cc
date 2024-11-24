@@ -405,6 +405,28 @@ bool MIP_ProcessImage(const char *filename)
   return true;
 }
 
+static std::vector<std::string> scanned_input_names;
+
+static void ScanFolderForPngs(const char *name, int flags, void *priv_dat)
+{
+  if (flags & SCAN_F_Hidden)
+    return;
+
+  if (!CheckExtension(name, "png"))
+  {
+    return;
+  }
+
+  const char *prefix = (const char *)priv_dat;
+
+  std::string full_name(prefix);
+
+  full_name += DIR_SEP_STR;
+  full_name += std::string(name);
+
+  scanned_input_names.push_back(full_name);
+}
+
 
 void MIP_CreateWAD(const char *filename)
 {
@@ -419,6 +441,16 @@ void MIP_CreateWAD(const char *filename)
   printf("--------------------------------------------------\n");
 
   int failures = 0;
+
+  if (PathIsDirectory(input_names[0].c_str()))
+  {
+    ScanDirectory(input_names[0].c_str(), ScanFolderForPngs, (void*) input_names[0].c_str());
+    input_names = scanned_input_names;
+      if (input_names.size() == 0)
+      {
+        FatalError("Directory contained no input images were specified!\n");
+      }
+  }
 
   for (unsigned int j = 0; j < input_names.size(); j++)
   {

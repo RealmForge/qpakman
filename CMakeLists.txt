@@ -14,7 +14,6 @@ endif()
 
 find_package(PNG REQUIRED)
 
-add_definitions(${PNG_DEFINITIONS})
 include_directories(${PNG_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS})
 
 if(UNIX)

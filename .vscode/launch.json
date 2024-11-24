@@ -9,9 +9,9 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/qpakman_DEBUG.exe",
-            "args": [],
+            "args": ["lq_dev", "-o", "lq_dev.wad"],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "C:/Dev/RealmForge/Content/Textures",
             "environment": []
         }
     ]
